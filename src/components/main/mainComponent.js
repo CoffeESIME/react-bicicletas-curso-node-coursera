@@ -20,7 +20,6 @@ export default class PersonList extends React.Component {
         <div>
       
         <Bicis bicis={this.state.bicicletas}></Bicis>
-      
       </div>
     )
   }

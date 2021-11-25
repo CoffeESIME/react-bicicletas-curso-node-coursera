@@ -13,7 +13,6 @@ function App() {
         <Route path="/bicicletas/crear" element={<Crear />}/>
         <Route path="*" element={<Navigate to ="/bicicletas" />}/>
       </Routes>   
-      
     </div>
   );
 }

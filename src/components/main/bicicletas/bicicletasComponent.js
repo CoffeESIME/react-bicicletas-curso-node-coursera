@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Table, Button, Modal, Form, Row, Col ,Container} from "react-bootstrap";
 import axios from "axios";
+import Mapa from "../map/mapComponent";
 function Bicis(props) {
   const [Modal_show_1, setShow_1] = useState(false);
   const [datosModalEditar, setDatos] = useState({
@@ -162,6 +163,7 @@ const handleDelete=(event)=>{
       </Table>
       </Row>
       </Container>
+      <Mapa></Mapa>
     </>
   );
 }
