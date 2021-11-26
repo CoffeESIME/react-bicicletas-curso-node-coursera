@@ -163,7 +163,7 @@ const handleDelete=(event)=>{
       </Table>
       </Row>
       </Container>
-      <Mapa></Mapa>
+      <Mapa bicis={props.bicis}></Mapa>
     </>
   );
 }

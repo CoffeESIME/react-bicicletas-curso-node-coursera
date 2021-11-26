@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Bicis from './bicicletas/bicicletasComponent';
 
-export default class PersonList extends React.Component {
+export default class Main extends React.Component {
   state = {
     bicicletas: []
   }

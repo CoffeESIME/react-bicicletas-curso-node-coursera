@@ -2,6 +2,7 @@ import React from "react";
 import {Nav,Navbar, Container, Row}from 'react-bootstrap'
 function Header(){
 return (
+  <Container fluid>
     <Row className="mb-3" >
     <Navbar bg="dark" variant="dark">
     <Container>
@@ -13,6 +14,7 @@ return (
     </Container>
   </Navbar>
   </Row>
+  </Container>
 );
 }
 
