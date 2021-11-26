@@ -8,9 +8,11 @@ function Bicis(props) {
       id:0,
       color:"",
       modelo:"",
-      ubicacion: []
+      lat:0,
+      lng:0
     });
   const [validated, setValidated] = useState(false);
+
 const handleDelete=(event)=>{
   axios.post(`http://192.168.1.70:3300/bicicletas/${event.id}/delete`,{ id:event.id })
     .then(res => {
@@ -21,12 +23,14 @@ const handleDelete=(event)=>{
 
 }
   const handleSubmit = (event) => {
-     
+           event.preventDefault();
+
     setDatos({
-        id:event.target[0].value.parseInt(),
+        id:event.target[0].value,
         color:event.target[2].value,
       modelo:event.target[1].value,
-      ubicacion: [event.target[3].value,event.target[4].value]
+      lat:event.target[3].value,
+      lng:event.target[4].value
     });
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -37,17 +41,32 @@ const handleDelete=(event)=>{
     setValidated(true);
     axios.post(`http://192.168.1.70:3300/bicicletas/${datosModalEditar.id}/update`, { datosModalEditar })
     .then(res => {
+      console.log("////////")
       console.log(res);
       console.log(res.data);
+      console.log("////////")
+
     })
   };
 
   const handleShow_1 = (e) => {
     setShow_1(true);
-    setDatos(e);
+    setDatos({ id:e.id,
+      color:e.color,
+      modelo:e.modelo,
+      lat:e.ubicacion[0],
+      lng:e.ubicacion[1]
+    });
   };
 
+  function handleChange(evt) {
+    const value = evt.target.value;
 
+      setDatos({
+        ...datosModalEditar,
+        [evt.target.id]: value
+      });
+      }
 
   return (
     <>
@@ -70,6 +89,8 @@ const handleDelete=(event)=>{
                   type="number"
                   placeholder="Id Bicicleta"
                   defaultValue={datosModalEditar.id}
+                  onChange={handleChange} 
+                  disabled
                 />
                 <Form.Control.Feedback>Se ve bien!</Form.Control.Feedback>
               </Form.Group>
@@ -81,6 +102,7 @@ const handleDelete=(event)=>{
                   type="text"
                   placeholder="Modelo"
                   defaultValue={datosModalEditar.modelo}
+                  onChange={handleChange} 
                 />
                 <Form.Control.Feedback>Se ve bien!</Form.Control.Feedback>
               </Form.Group>
@@ -93,6 +115,7 @@ const handleDelete=(event)=>{
                   id="color"
                   placeholder="Color"
                   defaultValue={datosModalEditar.color}
+                  onChange={handleChange} 
                   required
                 />
                 <Form.Control.Feedback type="invalid">
@@ -105,7 +128,8 @@ const handleDelete=(event)=>{
                   type="text"
                   id="lat"
                   placeholder="Latitud"
-                  defaultValue={datosModalEditar.ubicacion[0] }
+                  defaultValue={datosModalEditar.lat }
+                  onChange={handleChange} 
                   required
                 />
                 <Form.Control.Feedback type="invalid">
@@ -118,7 +142,8 @@ const handleDelete=(event)=>{
                   type="text"
                   id="lng"
                   placeholder="Longitud"
-                  defaultValue={datosModalEditar.ubicacion[1]}
+                  defaultValue={datosModalEditar.lng}
+                  onChange={handleChange} 
                   required
                 />
                 <Form.Control.Feedback type="invalid">
