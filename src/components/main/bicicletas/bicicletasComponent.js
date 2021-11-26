@@ -23,8 +23,6 @@ const handleDelete=(event)=>{
 
 }
   const handleSubmit = (event) => {
-           event.preventDefault();
-
     setDatos({
         id:event.target[0].value,
         color:event.target[2].value,
